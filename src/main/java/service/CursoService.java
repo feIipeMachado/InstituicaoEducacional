@@ -3,6 +3,7 @@ package service;
 import model.Aluno;
 import model.Curso;
 import model.Disciplina;
+import model.Professor;
 
 public class CursoService {
 
@@ -29,7 +30,7 @@ public class CursoService {
     }
 
     public void listarDisciplinasDoCurso(Curso curso) {
-        System.out.println("-------Listando disciplinas do curso--------");
+        System.out.println("-------Listando disciplinas do curso " + curso.getNome()+ "--------");
 
         for (Disciplina disciplina : curso.getListaDisciplinas()) {
             System.out.println("Nome: " + disciplina.getNome());
@@ -53,8 +54,49 @@ public class CursoService {
         }
     }
 
+    public void listarProfessoresDoCurso (Curso curso) {
+        System.out.println("-------Listando professores do curso--------");
+
+        for (Professor professor : curso.getListaProfessores()) {
+            System.out.println("Nome: " + professor.getNome());
+            System.out.println("Disciplinas lecionadas: ");
+            for (Disciplina disciplina : professor.getListaDisciplinas()) {
+                System.out.println(disciplina.getNome() + "|");
+            }
+            System.out.println("---------------------------------");
+        }
+    }
+
     public void vincularAlunoAoCurso(Curso curso, Aluno alunoParaVincular) {
         curso.getListaAlunos().add(alunoParaVincular);
+        System.out.println("Aluno " + alunoParaVincular.getNome() + " vinculado com sucesso" +
+                " ao curso " + curso.getNome());
+    }
+
+    public void vincularProfessorAoCurso (Curso curso, Professor professorParaVincular){
+        curso.getListaProfessores().add(professorParaVincular);
+        System.out.println("Professor " + professorParaVincular.getNome() + " vinculado com sucesso" +
+                " ao curso " + curso.getNome());
+    }
+
+    public void vincularProfessorADisciplina (Curso curso, Professor professor, Disciplina disciplina) {
+        if (curso.getListaDisciplinas().contains(disciplina) && curso.getListaProfessores().contains(professor)) {
+            professor.getListaDisciplinas().add(disciplina);
+        } else {
+            System.out.println("Professor " + professor.getNome() + " não está vinculado ao curso, ou " +
+                    "a disciplina " + disciplina.getNome() + " não está vinculada ao curso");
+        }
+
+        //não estou confortável com esse método, certamente deve ter uma forma mais simples de fazer isso
+    }
+
+    public void DesvincularProfessorDeDisciplina(Professor professor, Disciplina disciplina) {
+        if (professor.getListaDisciplinas().contains(disciplina)) {
+            professor.getListaDisciplinas().remove(disciplina);
+        } else {
+            System.out.println("Professor " + professor.getNome() + " não está vinculado a disciplina " +
+                    disciplina.getNome());
+        }
     }
 
 }

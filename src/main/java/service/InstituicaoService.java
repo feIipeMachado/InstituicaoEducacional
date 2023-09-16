@@ -5,6 +5,8 @@ import model.Curso;
 import model.Instituicao;
 import model.Professor;
 
+import java.math.BigDecimal;
+
 public class InstituicaoService {
 
     public Instituicao criarInstituicao(String nome) {
@@ -16,7 +18,7 @@ public class InstituicaoService {
     }
 
     public void listarCursosDaInstituicao(Instituicao instituicao) {
-        System.out.println("-------Listando cursos da instituicao--------");
+        System.out.println("-------Listando cursos da instituicao " + instituicao.getNome() + "---------");
 
         for (Curso curso : instituicao.getListaCursos()) {
             System.out.println("Nome: " + curso.getNome());
@@ -26,7 +28,7 @@ public class InstituicaoService {
     }
 
     public void listarAlunosDaInstituicao(Instituicao instituicao) {
-        System.out.println("-------Listando Alunos da instituição: " + instituicao.getNome());
+        System.out.println("-------Listando Alunos da instituição " + instituicao.getNome() + "---------");
 
         for (Aluno aluno : instituicao.getListaAlunos()) {
             System.out.println("Nome: " + aluno.getNome());
@@ -52,8 +54,10 @@ public class InstituicaoService {
         System.out.println("Aluno matriculado com sucesso");
     }
 
-    public void contratarProfessor(Instituicao instituicao, Professor professor) {
+    public void contratarProfessor(Instituicao instituicao, Professor professor, BigDecimal salario) {
+        professor.setSalario(salario);
         instituicao.getListaProfessores().add(professor);
+
     }
 
 }

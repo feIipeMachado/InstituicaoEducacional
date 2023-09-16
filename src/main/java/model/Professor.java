@@ -5,11 +5,18 @@ import java.util.List;
 
 public class Professor extends Funcionario {
 
-    private Curso curso;
     private List<Disciplina> listaDisciplinas;
 
-
-    public Professor(int id, String nome, String documento, Endereco endereco, BigDecimal salario) {
+    public Professor(int id, String nome, String documento, Endereco endereco, BigDecimal salario, List<Disciplina> listaDisciplinas) {
         super(id, nome, documento, endereco, salario);
+        this.listaDisciplinas = listaDisciplinas;
+    }
+
+    public List<Disciplina> getListaDisciplinas() {
+        return listaDisciplinas;
+    }
+
+    public void setListaDisciplinas(List<Disciplina> listaDisciplinas) {
+        this.listaDisciplinas = listaDisciplinas;
     }
 }

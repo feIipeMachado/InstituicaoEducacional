@@ -7,12 +7,15 @@ public class Curso {
 
     private List<Disciplina> listaDisciplinas;
     private List<Aluno> listaAlunos;
+
+    private List<Professor> listaProfessores;
     private int id;
     private String nome;
 
     public Curso(int id, String nome) {
         this.listaDisciplinas = new ArrayList<>();
         this.listaAlunos = new ArrayList<>();
+        this.listaProfessores = new ArrayList<>();
         this.id = id;
         this.nome = nome;
     }
@@ -49,4 +52,11 @@ public class Curso {
         this.nome = nome;
     }
 
+    public List<Professor> getListaProfessores() {
+        return listaProfessores;
+    }
+
+    public void setListaProfessores(List<Professor> listaProfessores) {
+        this.listaProfessores = listaProfessores;
+    }
 }

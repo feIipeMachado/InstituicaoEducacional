@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Professor extends Funcionario {
@@ -9,7 +10,7 @@ public class Professor extends Funcionario {
 
     public Professor(int id, String nome, String documento, Endereco endereco, BigDecimal salario, List<Disciplina> listaDisciplinas) {
         super(id, nome, documento, endereco, salario);
-        this.listaDisciplinas = listaDisciplinas;
+        this.listaDisciplinas = new ArrayList<>();
     }
 
     public List<Disciplina> getListaDisciplinas() {

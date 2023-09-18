@@ -32,18 +32,18 @@ public class InstituicaoService {
 
         for (Aluno aluno : instituicao.getListaAlunos()) {
             System.out.println("Nome: " + aluno.getNome());
-            System.out.println("Curso: " + aluno.getCurso());
             System.out.println("Matricula: " + aluno.getMatricula());
             System.out.println("--------------------------------");
         }
     }
 
     public void listarProfessoresDaInstituicao(Instituicao instituicao) {
-        System.out.println("-------Listando professores da instituição: " + instituicao.getNome());
+        System.out.println("-------Listando professores da instituição " + instituicao.getNome());
 
         for (Professor professor : instituicao.getListaProfessores()) {
             System.out.println("Nome: " + professor.getNome());
             System.out.println("ID: " + professor.getId());
+            System.out.println("Salário: R$" + professor.getSalario());
             System.out.println("--------------------------------");
         }
     }
@@ -59,5 +59,41 @@ public class InstituicaoService {
         instituicao.getListaProfessores().add(professor);
 
     }
+
+//    Não consegui fazer esses métodos funcionarem
+//
+//    public void removerAlunoPorMatricula(int matricula, Instituicao instituicao) {
+//        Aluno alunoParaRemover = instituicao.getListaAlunos().stream()
+//                .filter(aluno -> aluno.getMatricula() == matricula)
+//                .findFirst()
+//                .get();
+//
+//        if (alunoParaRemover == null) {
+//            System.out.println("Aluno não encontrado");
+//        } else {
+//            instituicao.getListaAlunos().remove(alunoParaRemover);
+//            System.out.println("Aluno removido com sucesso");
+//        }
+//
+//    }
+//
+//    public Aluno buscarAlunoPorNome(String nome, Instituicao instituicao) {
+//        System.out.println("Buscando aluno por nome");
+//        Aluno buscarAlunoPorNome = instituicao.getListaAlunos().stream()
+//                .filter(aluno -> aluno.getNome() == nome)
+//                .findFirst()
+//                .get();
+//
+//        return buscarAlunoPorNome;
+//    }
+//
+//    public Aluno buscarAlunoPorMatricula(int matricula, Instituicao instituicao) {
+//        Aluno buscarAlunoPorMatricula = instituicao.getListaAlunos().stream()
+//                .filter(aluno -> aluno.getMatricula() == matricula)
+//                .findFirst()
+//                .get();
+//
+//        return buscarAlunoPorMatricula;
+//    }
 
 }

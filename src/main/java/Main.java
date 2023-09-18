@@ -1,9 +1,16 @@
 import model.*;
 import service.*;
 
+import java.math.BigDecimal;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
+
+        Endereco endereco1 = new Endereco(1, "Rua A", "90000-000", 100, "Sem complemento", "Centro");
+        Endereco endereco2 = new Endereco(2, "Rua B", "10000-000", 200, "Sem complemento", "Centro");
+        Endereco endereco3 = new Endereco(3, "Rua C", "20000-000", 300, "Sem complemento", "Centro");
+        Endereco endereco4 = new Endereco(4, "Rua D", "30000-000", 400, "Sem complemento", "Centro");
 
         InstituicaoService instituicaoService = new InstituicaoService();
         Instituicao instituicao1 = instituicaoService.criarInstituicao("Fundatec");
@@ -25,6 +32,31 @@ public class Main {
         Disciplina disciplina5 = disciplinaService.criarDisciplina(5,"DevWeb2");
         Disciplina disciplina6 = disciplinaService.criarDisciplina(6,"Primeiros cuidados");
 
+        AlunoService alunoService = new AlunoService();
+        Aluno aluno1 = alunoService.criarAluno(1,"Felipe Machado","12512521",endereco1,1);
+        Aluno aluno2 = alunoService.criarAluno(2,"Mairy Eduardo","4636364",endereco2,2);
+        Aluno aluno3 = alunoService.criarAluno(3,"Alexandre","67447",endereco3,3);
+
+        ProfessorService professorService = new ProfessorService();
+        Professor professor1 = professorService.criarProfessor(1,"Lucas", "236235364", endereco1);
+        Professor professor2 = professorService.criarProfessor(2,"Felipe Vargas", "124142142", endereco2);
+        Professor professor3 = professorService.criarProfessor(1,"Giovanni", "464754", endereco3);
+        Professor professor4 = professorService.criarProfessor(1,"Matheus", "79879", endereco1);
+        Professor professor5 = professorService.criarProfessor(1,"Luiz", "5688565", endereco4);
+
+        instituicaoService.matricularAluno(instituicao1,aluno1);
+        instituicaoService.matricularAluno(instituicao1,aluno2);
+        instituicaoService.matricularAluno(instituicao1,aluno3);
+
+        instituicaoService.contratarProfessor(instituicao1,professor1, BigDecimal.valueOf(500));
+        instituicaoService.contratarProfessor(instituicao1,professor2, BigDecimal.valueOf(600));
+        instituicaoService.contratarProfessor(instituicao1,professor3, BigDecimal.valueOf(700));
+        instituicaoService.contratarProfessor(instituicao1,professor4, BigDecimal.valueOf(800));
+        instituicaoService.contratarProfessor(instituicao1,professor5, BigDecimal.valueOf(900));
+
+        instituicaoService.listarAlunosDaInstituicao(instituicao1);
+        instituicaoService.listarProfessoresDaInstituicao(instituicao1);
+
         cursoService.adicionarDisciplina(curso1, disciplina1);
         cursoService.adicionarDisciplina(curso1, disciplina2);
         cursoService.adicionarDisciplina(curso1, disciplina3);
@@ -34,38 +66,30 @@ public class Main {
 
         cursoService.listarDisciplinasDoCurso(curso1);
 
-        Endereco endereco1 = new Endereco(1, "Rua A", "90000-000", 100, "Sem complemento", "Centro");
-        Endereco endereco2 = new Endereco(2, "Rua B", "10000-000", 200, "Sem complemento", "Centro");
-        Endereco endereco3 = new Endereco(3, "Rua C", "20000-000", 300, "Sem complemento", "Centro");
-        Endereco endereco4 = new Endereco(4, "Rua D", "30000-000", 400, "Sem complemento", "Centro");
-
-
-        ProfessorService professorService = new ProfessorService();
-        Professor professor1 = professorService.criarProfessor(1,"Lucas", "236235364", endereco1);
-        Professor professor2 = professorService.criarProfessor(2,"Felipe Vargas", "124142142", endereco2);
-        Professor professor3 = professorService.criarProfessor(1,"Giovanni", "464754", endereco3);
-        Professor professor4 = professorService.criarProfessor(1,"Matheus", "79879", endereco1);
-        Professor professor5 = professorService.criarProfessor(1,"Luiz", "5688565", endereco4);
-
 
         cursoService.vincularProfessorAoCurso(curso1, professor1);
         cursoService.vincularProfessorAoCurso(curso1, professor2);
-        cursoService.vincularProfessorAoCurso(curso2, professor3);
+        cursoService.vincularProfessorAoCurso(curso1, professor3);
         cursoService.vincularProfessorAoCurso(curso1, professor4);
-        cursoService.vincularProfessorAoCurso(curso1, professor5);
+        cursoService.vincularProfessorAoCurso(curso2, professor5);
+
+        cursoService.vincularProfessorADisciplina(curso1,professor1,disciplina3);
+        cursoService.vincularProfessorADisciplina(curso1,professor4,disciplina4);
+        cursoService.vincularProfessorADisciplina(curso1,professor4,disciplina5);
+        cursoService.vincularProfessorADisciplina(curso1,professor2,disciplina1);
+        cursoService.vincularProfessorADisciplina(curso1,professor3,disciplina2);
+        cursoService.vincularProfessorADisciplina(curso2,professor5,disciplina6);
+
+        cursoService.listarProfessoresDoCurso(curso1);
 
 
+        cursoService.matricularAluno(aluno1,curso1);
+        cursoService.matricularAluno(aluno2,curso1);
+        cursoService.matricularAluno(aluno3,curso2);
 
-        AlunoService alunoService = new AlunoService();
-        Aluno aluno1 = alunoService.criarAluno(1,"Felipe Machado","12512521",endereco1,1);
-        Aluno aluno2 = alunoService.criarAluno(2,"Mairy Eduardo","4636364",endereco2,2);
-        Aluno aluno3 = alunoService.criarAluno(3,"Alexandre","67447",endereco3,3);
+        cursoService.listarAlunosDoCurso(curso1);
 
-        System.out.println(" --- Buscando aluno por nome");
-        Aluno alunoPorNome = alunoService.buscarAlunoPorNome("Alexandre");
-        System.out.println("Aluno " + alunoPorNome.getNome() + " ("
-                + alunoPorNome.getMatricula() + ") encontrado com sucesso.");
-        System.out.println(" ---");
+
 
 
 

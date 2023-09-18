@@ -45,7 +45,7 @@ public class CursoService {
     }
 
     public void listarAlunosDoCurso (Curso curso) {
-        System.out.println("-------Listando alunos do curso--------");
+        System.out.println("-------Listando alunos do curso " + curso.getNome() + "--------");
 
         for (Aluno aluno : curso.getListaAlunos()) {
             System.out.println("Nome: " + aluno.getNome());
@@ -55,13 +55,13 @@ public class CursoService {
     }
 
     public void listarProfessoresDoCurso (Curso curso) {
-        System.out.println("-------Listando professores do curso--------");
+        System.out.println("-------Listando professores do curso " + curso.getNome() + "--------");
 
         for (Professor professor : curso.getListaProfessores()) {
             System.out.println("Nome: " + professor.getNome());
             System.out.println("Disciplinas lecionadas: ");
             for (Disciplina disciplina : professor.getListaDisciplinas()) {
-                System.out.println(disciplina.getNome() + "|");
+                System.out.println(disciplina.getNome());
             }
             System.out.println("---------------------------------");
         }

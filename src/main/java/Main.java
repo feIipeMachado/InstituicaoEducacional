@@ -7,10 +7,21 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        Endereco endereco1 = new Endereco(1, "Rua A", "90000-000", 100, "Sem complemento", "Centro");
-        Endereco endereco2 = new Endereco(2, "Rua B", "10000-000", 200, "Sem complemento", "Centro");
-        Endereco endereco3 = new Endereco(3, "Rua C", "20000-000", 300, "Sem complemento", "Centro");
-        Endereco endereco4 = new Endereco(4, "Rua D", "30000-000", 400, "Sem complemento", "Centro");
+        Endereco endereco1 = Endereco.builder()
+                .id(1).rua("Rua A").cep("90000-000").numero(100).complemento("Sem complemento").bairro("Centro")
+                .build();
+
+        Endereco endereco2 = Endereco.builder()
+                .id(2).rua("Rua B").cep("10000-000").numero(200).complemento("Sem complemento").bairro("Centro")
+                .build();
+
+        Endereco endereco3 = Endereco.builder()
+                .id(3).rua("Rua A").cep("20000-000").numero(300).complemento("Sem complemento").bairro("Centro")
+                .build();
+
+        Endereco endereco4 = Endereco.builder()
+                .id(4).rua("Rua A").cep("30000-000").numero(400).complemento("Sem complemento").bairro("Centro")
+                .build();
 
         InstituicaoService instituicaoService = new InstituicaoService();
         Instituicao instituicao1 = instituicaoService.criarInstituicao("Fundatec");

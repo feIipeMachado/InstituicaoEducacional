@@ -33,6 +33,7 @@ public class InstituicaoService {
         for (Aluno aluno : instituicao.getListaAlunos()) {
             System.out.println("Nome: " + aluno.getNome());
             System.out.println("Matricula: " + aluno.getMatricula());
+            System.out.println("Endereco: " + aluno.getEndereco().getRua() + ", " + aluno.getEndereco().getNumero() + ". " + aluno.getEndereco().getBairro());
             System.out.println("--------------------------------");
         }
     }
